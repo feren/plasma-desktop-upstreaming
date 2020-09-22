@@ -36,7 +36,7 @@ SimpleKCM {
     property QtObject user
     property bool overrideImage: false
     property url oldImage
-
+    
     Connections {
         target: kcm
 
@@ -168,8 +168,10 @@ SimpleKCM {
             }
             
             QQC2.Button {
-                enabled: fingerprintModel.deviceFound
+                flat: false
+                enabled: kcm.fingerprintModel.deviceFound
                 text: i18n("Fingerprint")
+                icon.name: "fingerprint-gui"
                 onClicked: {
                     fingerprintDialog.account = user;
                     fingerprintDialog.openAndClear();
@@ -442,7 +444,7 @@ SimpleKCM {
             }
         }
     }
-
+    
+    FingerprintDialog {id: fingerprintDialog; account: user}
     ChangePassword { id: changePassword; account: user }
-    FingerprintDialog { id: fingerprintDialog; account: user }
 }
